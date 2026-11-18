@@ -21,9 +21,10 @@ jobs:
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt coverage
 
-      - name: Verificar migracoes e executar testes automatizados
+      - name: Verificar migracoes e executar testes com cobertura
         run: |
           python manage.py makemigrations --check --dry-run
-          python manage.py test -v 2
+          coverage run --source=estoque manage.py test -v 2
+          coverage report -m
