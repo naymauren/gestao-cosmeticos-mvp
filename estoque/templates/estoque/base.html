@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestao de Cosmeticos MVP{% endblock %}</title>
+    <style>
+        :root {
+            --bg: #F8FAFC;
+            --card: #FFFFFF;
+            --text: #0F172A;
+            --muted: #334155;
+            --primary: #0F766E;
+            --primary-dark: #115E59;
+            --warning-bg: #FEF3C7;
+            --warning-border: #B45309;
+            --success-bg: #DCFCE7;
+            --success-border: #15803D;
+            --danger-bg: #FEE2E2;
+            --danger-border: #B91C1C;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .container { max-width: 480px; margin: 0 auto; padding: 16px; }
+        header {
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        header h1 { margin: 0; font-size: 20px; }
+        .card {
+            background: var(--card);
+            border: 2px solid #CBD5E1;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+        .btn-primary { background: var(--primary); color: #FFFFFF; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary { background: #FFFFFF; color: var(--text); border-color: #0F172A; }
+        label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 17px; }
+        select, input {
+            width: 100%;
+            min-height: 48px;
+            font-size: 18px;
+            padding: 10px 12px;
+            border: 2px solid #475569;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            background: #FFFFFF;
+            color: var(--text);
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .badge-ok { background: var(--success-bg); color: #14532D; border: 1px solid var(--success-border); }
+        .badge-warn { background: var(--warning-bg); color: #78350F; border: 1px solid var(--warning-border); }
+        .alert-box {
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            border-left: 6px solid;
+        }
+        .alert-success { background: var(--success-bg); border-color: var(--success-border); color: #14532D; }
+        .alert-danger { background: var(--danger-bg); border-color: var(--danger-border); color: #7F1D1D; }
+        .alert-warning { background: var(--warning-bg); border-color: var(--warning-border); color: #78350F; }
+    </style>
+</head>
+<body>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

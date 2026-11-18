@@ -1,0 +1,43 @@
+﻿{% extends 'estoque/base.html' %}
+{% block title %}Tela 3 - Alertas e Resultados{% endblock %}
+{% block content %}
+<header>
+    <h1>Alertas e Resultados</h1>
+    <p style="margin:4px 0 0;">Acompanhamento de validade e pedidos</p>
+</header>
+
+{% if venda %}
+<div class="alert-box alert-success" role="status">
+    <strong>Venda confirmada!</strong><br>
+    Produto: {{ venda.cosmetico.nome }} ({{ venda.quantidade }} un.)<br>
+    Total recebido: R$ {{ venda.valor_total }} | Lucro estimado: R$ {{ venda.lucro_estimado }}
+</div>
+{% endif %}
+
+<section class="card" aria-label="Alertas de validade">
+    <h2 style="margin-top:0; font-size:18px;">Alertas de Validade (Proximos 30 dias)</h2>
+    {% for alerta in alertas %}
+    <div class="alert-box alert-warning">
+        <strong>Atencao â€” Vence em {{ alerta.dias_para_vencer }} dias:</strong><br>
+        {{ alerta.nome }} ({{ alerta.quantidade_estoque }} unidades em estoque)
+    </div>
+    {% empty %}
+    <p>Nenhum produto proximo do vencimento.</p>
+    {% endfor %}
+</section>
+
+<section class="card" aria-label="Controle de encomendas">
+    <h2 style="margin-top:0; font-size:18px;">Controle de Encomendas da Revista</h2>
+    {% for enc in encomendas %}
+    <p style="border-bottom:1px solid #E2E8F0; padding-bottom:8px;">
+        <strong>Cliente:</strong> {{ enc.cliente }}<br>
+        <strong>Pedido:</strong> {{ enc.quantidade }}x {{ enc.produto_descricao }}<br>
+        <span class="badge badge-warn">Status: {{ enc.get_status_display }}</span>
+    </p>
+    {% empty %}
+    <p>Nenhuma encomenda registrada.</p>
+    {% endfor %}
+</section>
+
+<a href="{% url 'painel_inicial' %}" class="btn btn-primary">Menu Inicial</a>
+{% endblock %}

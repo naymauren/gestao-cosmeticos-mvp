@@ -1,0 +1,33 @@
+﻿{% extends 'estoque/base.html' %}
+{% block title %}Tela 1 - Painel Inicial Mobile{% endblock %}
+{% block content %}
+<header>
+    <h1>Minha Pronta-Entrega</h1>
+    <p style="margin:4px 0 0;">Controle rapido de cosmeticos</p>
+</header>
+
+<section class="card" aria-label="Resumo do estoque">
+    <p style="margin:0 0 8px;"><strong>Total em estoque:</strong> {{ total_unidades }} unidades</p>
+    <p style="margin:0;"><strong>Alertas de validade:</strong> {{ alertas_count }} produto(s)</p>
+</section>
+
+<a href="{% url 'registrar_venda' %}" class="btn btn-primary">+ Registrar Venda</a>
+<a href="{% url 'alertas_gerais' %}" class="btn btn-secondary">Ver Alertas e Encomendas</a>
+
+<section aria-label="Cosmeticos disponiveis">
+    <h2 style="font-size:18px;">Cosmeticos a Pronta-Entrega</h2>
+    {% for item in cosmeticos %}
+    <article class="card">
+        <h3 style="margin:0 0 6px; font-size:18px;">{{ item.nome }}</h3>
+        <p style="margin:0 0 6px;">Preco: <strong>R$ {{ item.preco_venda }}</strong> | Disponivel: <strong>{{ item.quantidade_estoque }} un.</strong></p>
+        {% if item.dias_para_vencer <= 30 %}
+            <span class="badge badge-warn">Atencao: vence em {{ item.dias_para_vencer }} dias</span>
+        {% else %}
+            <span class="badge badge-ok">OK: dentro do prazo</span>
+        {% endif %}
+    </article>
+    {% empty %}
+    <p>Nenhum cosmetico cadastrado.</p>
+    {% endfor %}
+</section>
+{% endblock %}
